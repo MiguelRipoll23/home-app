@@ -2,6 +2,7 @@
   "name": "matter-controller",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "main": "./out/main/index.js",
   "scripts": {
     "dev": "electron-vite dev",
@@ -53,34 +54,35 @@
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
-    "@electron-toolkit/utils": "^3.0.0",
-    "@matter/main": "^0.16.11",
-    "electron-updater": "^6.6.2",
-    "i18next": "^26.3.0",
-    "lucide-react": "^0.400.0",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6",
+    "@electron-toolkit/utils": "^4.0.0",
+    "@matter/main": "^0.17.2",
+    "electron-updater": "^6.8.9",
+    "i18next": "^26.3.1",
+    "lucide-react": "^1.18.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "react-i18next": "^17.0.8",
     "zustand": "^5.0.14"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
-    "@types/react": "^19.2.15",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^4.7.0",
-    "electron": "^42.3.0",
-    "electron-builder": "^26.8.1",
-    "electron-vite": "^3.1.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "electron": "^42.4.0",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^5.0.0",
     "eslint": "^9.39.4",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
-    "sharp": "^0.34.5",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.60.0",
-    "vitest": "^4.1.7"
+    "sharp": "^0.35.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.61.0",
+    "vitest": "^4.1.8"
   },
   "allowScripts": {
-    "electron@42.3.0": true,
-    "esbuild@0.25.12": true
+    "electron@42.4.0": true,
+    "esbuild@0.25.12": true,
+    "electron-winstaller@5.4.0": true
   }
 }
