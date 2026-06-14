@@ -13,7 +13,7 @@ export function createWindow(): BrowserWindow {
     backgroundColor: '#f2f2f7',
     icon: join(__dirname, '../../resources/icon.png'),
     webPreferences: {
-      preload: join(__dirname, '../preload/index.js'),
+      preload: join(__dirname, '../preload/index.mjs'),
       sandbox: false
     },
     titleBarStyle: 'hiddenInset'
