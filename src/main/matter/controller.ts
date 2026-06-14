@@ -157,7 +157,7 @@ class MatterControllerService implements IMatterController {
       },
       basicInformation: {
         vendorName: 'Home App',
-        productName: 'Matter Controller',
+        productName: 'Home',
         vendorId: VendorId(0xFFF1),
         productId: 1,
       },
