@@ -24,7 +24,7 @@ An alternative for Windows or Linux to manage your Matter accessories with an ex
 
 ### New Accessories
 
-Tap the **+** button and scan the QR code on your accessory, or use **Use Setup Code** to enter an 11-digit manual pairing code.
+Tap the **+** button and scan the QR code on your accessory, or use **Use Setup Code** to enter the pairing code.
 
 ### Already-Paired Accessories
 
