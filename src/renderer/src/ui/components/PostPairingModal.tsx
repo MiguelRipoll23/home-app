@@ -113,7 +113,7 @@ export const PostPairingModal: React.FC<PostPairingModalProps> = ({ accessory, o
               {t('postPairing.continue')}
             </button>
             <button
-              className={`modal-btn-amber wide secondary ${identifying ? 'is-identifying' : ''}`}
+              className="modal-btn-amber wide secondary"
               onClick={handleIdentify}
               disabled={identifying}
             >
