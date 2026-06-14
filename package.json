@@ -14,8 +14,8 @@
     "electron:build": "electron-vite build && electron-builder --publish never"
   },
   "build": {
-    "appId": "com.matter.controller",
-    "productName": "Matter Controller",
+    "appId": "com.home.app",
+    "productName": "Home",
     "directories": {
       "output": "release"
     },
