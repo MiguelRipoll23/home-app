@@ -23,28 +23,17 @@ export const ScanView: React.FC = () => {
 
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: 200, width: '100%' }}>
-      {scanning && discoveredDevices.length === 0 && (
-        <div style={{ textAlign: 'center' }}>
-          <Radar
-            size={48}
-            style={{
-              color: 'var(--accent)',
-              animation: 'scanPulse 1s ease-in-out infinite',
-              marginBottom: 16,
-            }}
-          />
-          <p style={{ fontSize: 15, fontWeight: 500, color: 'var(--text-secondary)' }}>
-            Searching for nearby accessories...
-          </p>
-        </div>
-      )}
-
-      {!scanning && discoveredDevices.length === 0 && (
+      {discoveredDevices.length === 0 && (
         <div style={{ textAlign: 'center' }}>
           <Radar size={48} style={{ color: 'var(--text-secondary)', marginBottom: 16, opacity: 0.5 }} />
           <p style={{ fontSize: 15, fontWeight: 500, color: 'var(--text-secondary)' }}>
-            No accessories found nearby
+            No unpaired accessories nearby
           </p>
+          {scanning && (
+            <div style={{ marginTop: 12 }}>
+              <Search size={16} style={{ color: 'var(--accent)', animation: 'scanPulse 1s ease-in-out infinite' }} />
+            </div>
+          )}
         </div>
       )}
 

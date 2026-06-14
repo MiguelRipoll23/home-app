@@ -42,7 +42,7 @@ export const PairModal: React.FC<PairModalProps> = ({ isOpen, onClose }) => {
                   className="modal-btn-amber modal-btn-amber-wide"
                   onClick={() => setMode('manual')}
                 >
-                  Enter Code Manually
+                  Use Setup Code
                 </button>
               </div>
             </>

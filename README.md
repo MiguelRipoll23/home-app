@@ -22,16 +22,20 @@ An alternative for Windows or Linux to manage your Matter accessories with an ex
 
 ## Pairing a Device
 
-If your accessory is already paired with the Apple Home app:
+### New Accessories
 
-1. Open the Apple Home app on your iPhone, iPad, or Mac
-2. Tap the accessory you want to share
-3. Tap the settings icon (gear) or the info button
-4. Scroll down and tap **Turn On Pairing Mode**
-5. A setup code (manual pairing code) will be displayed
-6. In home-app, tap the **+** button and enter the setup code
+Tap the **+** button and scan the QR code on your accessory, or use **Use Setup Code** to enter an 11-digit manual pairing code.
 
-The accessory will be added to home-app while remaining paired with Apple Home as well.
+### Already-Paired Accessories
+
+If your accessory is already paired with another Matter controller (Apple Home, Google Home, SmartThings, etc.), you can share it without resetting:
+
+1. Open the controller app your accessory is currently paired with
+2. Find the accessory's settings and look for **Turn On Pairing Mode**, **Pairing Mode**, or **Sharing Mode**
+3. A setup code (manual pairing code) will be displayed
+4. In home-app, tap the **+** button, then **Use Setup Code**, and enter the code
+
+The accessory will be added to home-app while remaining paired with your other controller as well.
 
 ## Credits
 
