@@ -77,10 +77,10 @@ export const PostPairingModal: React.FC<PostPairingModalProps> = ({ accessory, o
             {accessory.deviceType.charAt(0).toUpperCase() + accessory.deviceType.slice(1)}
           </h2>
 
-          <div className="edit-identity-group" style={{ width: '100%' }}>
+          <div style={{ width: '100%' }}>
             <input
               type="text"
-              className="edit-identity-name"
+              className="post-pairing-name-input"
               value={name}
               onChange={e => setName(e.target.value)}
               placeholder={t('postPairing.namePlaceholder')}
