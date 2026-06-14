@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0 - 2026-06-14
+
+## What's Changed
+* Bump version to 1.0.0 by @github-actions[bot] in https://github.com/MiguelRipoll23/home-app/pull/7
+
+
+**Full Changelog**: https://github.com/MiguelRipoll23/home-app/compare/1.0.0-beta.1...1.0.0
+
+
 ## 1.0.0-beta.1 - 2026-06-14
 
 ## What's Changed
