@@ -1,0 +1,94 @@
+.level-track {
+  width: 64px;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 32px;
+  position: relative;
+  min-height: 140px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.level-fill {
+  position: absolute;
+  overflow: hidden;
+}
+
+.light-level-fill {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 0 0 32px 32px;
+  transition: height 0.05s linear;
+}
+
+.light-level-fill.default-fill {
+  background: #ffcc00;
+}
+
+.colors-section {
+  width: 100%;
+  padding-top: 12px;
+}
+
+.colors-label {
+  font-size: 11px;
+  opacity: 0.5;
+  margin-bottom: 10px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.colors-grid {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 4px 12px 12px;
+  margin: 0 -12px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.colors-grid:hover {
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.colors-grid::-webkit-scrollbar {
+  height: 4px;
+}
+
+.colors-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.colors-grid::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 4px;
+}
+
+.colors-grid:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.color-swatch {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  padding: 0;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.color-swatch:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.color-swatch.selected {
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3);
+  transform: scale(1.15);
+}

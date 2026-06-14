@@ -1,0 +1,61 @@
+.status-widgets {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 4px 4px 16px;
+  scrollbar-width: none;
+}
+
+.status-widgets::-webkit-scrollbar {
+  display: none;
+}
+
+.status-widget {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: var(--surface);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  min-width: fit-content;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-shadow: none; /* No shadow by default */
+}
+
+.status-widget:hover {
+  background: var(--surface-hover);
+}
+
+.status-widget.selected {
+  border-color: var(--amber);
+  background: var(--amber-dim, rgba(245, 158, 11, 0.1));
+  box-shadow: none !important; /* No shadow when selected */
+}
+
+.status-icon {
+  color: var(--amber);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.status-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}

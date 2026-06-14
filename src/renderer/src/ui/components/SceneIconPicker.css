@@ -1,0 +1,57 @@
+.icon-picker-modal {
+  background: var(--surface);
+  border-radius: 16px;
+  width: 320px;
+  max-width: 90vw;
+  padding: 20px 16px;
+  animation: slideUp 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+
+.color-option {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.1s;
+}
+
+.color-option.is-selected {
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+.edit-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  padding: 0;
+}
+
+.edit-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: none;
+  background: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.edit-icon-btn.is-active {
+  background: var(--accent);
+  color: #ffffff;
+}

@@ -1,0 +1,164 @@
+.edit-view:has(.edit-identity-group) {
+  max-height: 80vh;
+  overflow: hidden;
+  background: var(--surface-hover);
+}
+
+.edit-view:has(.edit-identity-group) .edit-view-body {
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.scene-edit-empty-msg {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.scene-edit-section-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 0 2px;
+}
+
+.scene-edit-room-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.scene-edit-room-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.scene-edit-room-group .accessory-card.is-on {
+  background: var(--surface);
+}
+
+.scene-edit-room-group .accessory-card:not(.is-on) {
+  background: rgba(142, 142, 147, 0.3);
+}
+
+.scene-edit-room-group .accessory-card.is-on .accessory-card-name {
+  color: var(--text-primary);
+}
+
+.scene-edit-room-group .accessory-card:not(.is-on) .accessory-card-name {
+  color: #636366;
+}
+
+.scene-edit-room-group .accessory-card.is-on .accessory-card-state {
+  color: var(--text-secondary);
+}
+
+.scene-edit-room-group .accessory-card:not(.is-on) .accessory-card-state {
+  color: #636366;
+}
+
+.scene-edit-room-group .accessory-card:not(.is-on) .accessory-card-icon {
+  color: #636366;
+}
+
+.edit-toggle-row.is-active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.scene-edit-add-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--surface-hover);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.scene-edit-picker-room {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.scene-edit-picker-room-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 8px 4px;
+}
+
+.scene-edit-picker-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 8px;
+  border-radius: 10px;
+  border: none;
+  background: var(--surface);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.scene-edit-picker-row:hover {
+  opacity: 0.8;
+}
+
+.scene-edit-picker-row.is-selected {
+  background: rgba(255, 179, 0, 0.15);
+}
+
+.scene-edit-picker-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scene-edit-checkbox {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.scene-edit-checkbox.is-checked {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.scene-edit-cancel-btn {
+  margin-top: 4px;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  background: none;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+}
+
+.scene-edit-cancel-btn:hover {
+  background: var(--surface);
+}

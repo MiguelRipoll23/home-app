@@ -1,0 +1,43 @@
+.level-track {
+  width: 64px;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 32px;
+  position: relative;
+  min-height: 140px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.level-fill {
+  position: absolute;
+  overflow: hidden;
+}
+
+.plug-level-fill.is-on {
+  background: linear-gradient(to top, #ffcc00, #ffd633);
+}
+
+.level-icon {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.plug-level-fill {
+  left: 4px;
+  right: 4px;
+  height: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 32px;
+  transition: bottom 0.3s ease;
+}
+
+.plug-level-fill.is-off {
+  bottom: 4px;
+}
+
+.plug-level-fill.is-on {
+  bottom: calc(50% - 4px);
+}

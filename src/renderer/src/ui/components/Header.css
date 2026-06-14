@@ -1,0 +1,73 @@
+.app-header {
+  padding: 0 !important;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.header-btn {
+  color: #ffffff !important;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 4px 16px;
+  border-radius: 20px;
+}
+
+.header-right {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+}
+
+.add-menu {
+  position: fixed;
+  top: calc(anchor(bottom) + 8px);
+  right: anchor(right);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  z-index: 2001;
+}
+
+.add-menu button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: none;
+  background: none;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 14px;
+  width: 100%;
+}
+
+.add-menu button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

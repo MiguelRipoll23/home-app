@@ -1,0 +1,163 @@
+name: Publish release
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  create-tag:
+    name: Create tag
+    runs-on: ubuntu-latest
+
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'new-release')
+
+    outputs:
+      tag-name: ${{ steps.get-tag-name.outputs.tag-name }}
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v6
+
+      - name: Get tag name
+        id: get-tag-name
+        run: |
+          branch_name="${{ github.event.pull_request.head.ref }}"
+          tag_name=$(echo $branch_name | sed 's/version\///')
+          echo "tag-name=$tag_name" >> $GITHUB_OUTPUT
+
+      - name: Create tag
+        run: |
+          git tag "${{ env.TAG_NAME }}"
+        env:
+          TAG_NAME: ${{ steps.get-tag-name.outputs.tag-name }}
+
+      - name: Push tag to origin
+        run: git push origin "${{ env.TAG_NAME }}"
+        env:
+          TAG_NAME: ${{ steps.get-tag-name.outputs.tag-name }}
+
+  create-release:
+    name: Create release
+    needs: [create-tag]
+    runs-on: ubuntu-latest
+    if: needs.create-tag.outputs.tag-name != ''
+    permissions:
+      contents: write
+    steps:
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: "${{ needs.create-tag.outputs.tag-name }}"
+          prerelease: ${{ contains(needs.create-tag.outputs.tag-name, '-') }}
+          generateReleaseNotes: true
+          allowUpdates: true
+
+  build:
+    name: Build (${{ matrix.os }})
+    needs: [create-tag, create-release]
+    if: needs.create-tag.outputs.tag-name != ''
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run electron:build
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+
+      - name: Upload artifacts
+        shell: bash
+        run: |
+          while IFS= read -r -d $'\0' file; do
+            gh release upload "$TAG_NAME" "$file" --clobber
+          done < <(find release -maxdepth 2 \( -name "*.exe" -o -name "*.dmg" -o -name "*.AppImage" -o -name "latest*.yml" \) -print0)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG_NAME: ${{ needs.create-tag.outputs.tag-name }}
+
+  update-changelog:
+    name: Update changelog
+    needs: [create-tag, create-release]
+    runs-on: ubuntu-latest
+    if: needs.create-tag.outputs.tag-name != ''
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Build changelog entry from auto release notes
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          TAG_NAME: ${{ needs.create-tag.outputs.tag-name }}
+        run: |
+          release_notes_text="$(
+            gh api \
+              repos/${{ github.repository }}/releases/tags/${TAG_NAME} \
+              --jq '.body'
+          )"
+
+          if [ -z "${release_notes_text}" ]; then
+            echo "Release notes were not generated. Skipping changelog update."
+            exit 0
+          fi
+
+          current_date="$(date -u +%F)"
+          release_header="## ${TAG_NAME} - ${current_date}"
+
+          if [ -f CHANGELOG.md ] && grep -Fqx "${release_header}" CHANGELOG.md; then
+            echo "Changelog already contains ${release_header}. Skipping changelog update."
+            exit 0
+          fi
+
+          temporary_file_path="$(mktemp)"
+          {
+            echo "# Changelog"
+            echo
+            echo "${release_header}"
+            echo
+            echo "${release_notes_text}"
+            echo
+            if [ -f CHANGELOG.md ]; then
+              awk 'NR == 1 && $0 == "# Changelog" { next } { print }' CHANGELOG.md
+            fi
+          } > "${temporary_file_path}"
+
+          mv "${temporary_file_path}" CHANGELOG.md
+
+      - name: Commit changelog
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md
+          if git diff --quiet --cached CHANGELOG.md; then
+            echo "No changelog updates to commit."
+            exit 0
+          fi
+          git commit -m "docs: update changelog for ${{ needs.create-tag.outputs.tag-name }}"
+          git push origin HEAD:main
