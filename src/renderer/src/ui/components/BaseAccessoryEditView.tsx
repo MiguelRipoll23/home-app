@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { X } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Accessory } from '../../types/device'
 import { useDeviceStore } from '../../state/device-store'
 import { useRoomStore } from '../../state/room-store'
@@ -23,7 +24,8 @@ export const BaseAccessoryEditView: React.FC<BaseAccessoryEditViewProps> = ({
   customFields,
   onSave,
 }) => {
-  const { setDeviceName, setDeviceRoom, setShowOnHome, fetchDevices } = useDeviceStore()
+  const { t } = useTranslation()
+  const { setDeviceName, setDeviceRoom, setShowOnHome, removeDevice } = useDeviceStore()
   const { rooms } = useRoomStore()
   const [name, setName] = useState(accessory.friendlyName)
   const [roomId, setRoomId] = useState(accessory.roomId)
@@ -131,13 +133,16 @@ export const BaseAccessoryEditView: React.FC<BaseAccessoryEditViewProps> = ({
             </button>
             
             {!accessory.bridgeId && (
-              <button className="edit-toggle-row" style={{ color: 'var(--red)' }} onClick={() => {
-                if (confirm('Remove this accessory from your home?')) {
-                  api().storage.setFavorite(accessory.id, false)
+              <button className="edit-toggle-row" style={{ color: 'var(--red)' }} onClick={async () => {
+                if (!confirm(t('common.removeAccessoryConfirm'))) return
+                try {
+                  await removeDevice(accessory.id)
                   onClose()
+                } catch (err) {
+                  alert(t('common.removeAccessoryError') + ' ' + (err as Error).message)
                 }
               }}>
-                <span>Remove Accessory</span>
+                <span>{t('common.removeAccessory')}</span>
               </button>
             )}
           </div>

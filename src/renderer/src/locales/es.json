@@ -108,6 +108,9 @@
     "close": "Cerrar",
     "loading": "Cargando...",
     "error": "Error",
-    "success": "Éxito"
+    "success": "Éxito",
+    "removeAccessory": "Eliminar Accesorio",
+    "removeAccessoryConfirm": "¿Eliminar este accesorio de tu hogar?",
+    "removeAccessoryError": "Error al eliminar el accesorio:"
   }
 }

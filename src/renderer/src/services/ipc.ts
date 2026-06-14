@@ -8,6 +8,7 @@ declare global {
         list: () => Promise<Accessory[]>
         listBridges: () => Promise<BridgeInfo[]>
         removeBridge: (bridgeId: string) => Promise<void>
+        removeAccessory: (accessoryId: string) => Promise<void>
         discoverCommissionable: () => Promise<DiscoveredDevice[]>
         toggle: (deviceId: string) => Promise<boolean>
         setOn: (deviceId: string, on: boolean) => Promise<boolean>

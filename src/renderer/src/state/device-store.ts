@@ -25,6 +25,7 @@ interface DeviceState {
   updateDevice: (device: Accessory) => void
   toggleFavorite: (id: string, favorite: boolean) => Promise<void>
   setShowOnHome: (id: string, show: boolean) => Promise<void>
+  removeDevice: (id: string) => Promise<void>
 }
 
 export const useDeviceStore = create<DeviceState>((set, get) => ({
@@ -215,5 +216,12 @@ export const useDeviceStore = create<DeviceState>((set, get) => ({
     } catch {
       set({ error: 'Failed to update home visibility' })
     }
+  },
+
+  removeDevice: async (id: string) => {
+    await api().devices.removeAccessory(id)
+    set(state => ({
+      devices: state.devices.filter(d => d.id !== id),
+    }))
   },
 }))

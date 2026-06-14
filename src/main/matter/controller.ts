@@ -30,6 +30,7 @@ export interface IMatterController {
   setDeviceRoom(deviceId: string, roomId: string): Promise<void>
   getBridges(): Promise<BridgeInfo[]>
   removeBridge(bridgeId: string): Promise<void>
+  removeAccessory(accessoryId: string): Promise<void>
   getScenes(): Promise<Scene[]>
   activateScene(sceneId: string): Promise<void>
   onUpdate(listener: (device: Accessory) => void): void
@@ -357,6 +358,23 @@ class MatterControllerService implements IMatterController {
       await node.delete()
     }
     storageService.removeAccessoryDataByNodeId(bridgeId)
+  }
+
+  async removeAccessory(accessoryId: string): Promise<void> {
+    const parsed = parseAccessoryId(accessoryId)
+    if (!parsed) throw new Error(`Invalid accessory ID: ${accessoryId}`)
+    try {
+      const node = await this.findNodeById(parsed.nodeId)
+      if (node) {
+        try {
+          await node.decommission()
+        } catch {
+          await node.delete()
+        }
+      }
+    } finally {
+      storageService.removeAccessoryDataByNodeId(parsed.nodeId)
+    }
   }
 
   async getScenes(): Promise<Scene[]> {

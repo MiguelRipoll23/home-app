@@ -129,6 +129,10 @@ export function registerIpcHandlers(controller: IMatterController, mainWindow: B
     storageService.setIcon(accessoryId, iconId)
   })
 
+  ipcMain.handle('device:remove', async (_e, accessoryId: string) => {
+    await controller.removeAccessory(accessoryId)
+  })
+
   ipcMain.handle('storage:getCustomIcon', async (_e, accessoryId: string) => {
     return storageService.getIcon(accessoryId)
   })

@@ -9,6 +9,7 @@ const api: HomeControllerAPI = {
     list: () => ipcRenderer.invoke('devices:list'),
     listBridges: () => ipcRenderer.invoke('devices:listBridges'),
     removeBridge: (bridgeId: string) => ipcRenderer.invoke('bridge:remove', bridgeId),
+    removeAccessory: (accessoryId: string) => ipcRenderer.invoke('device:remove', accessoryId),
     discoverCommissionable: () => ipcRenderer.invoke('devices:discoverCommissionable'),
     toggle: (deviceId: string) => ipcRenderer.invoke('device:toggle', deviceId),
     setOn: (deviceId: string, on: boolean) => ipcRenderer.invoke('device:setOn', deviceId, on),
