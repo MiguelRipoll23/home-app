@@ -111,6 +111,8 @@
     "success": "Éxito",
     "removeAccessory": "Eliminar Accesorio",
     "removeAccessoryConfirm": "¿Eliminar este accesorio de tu hogar?",
-    "removeAccessoryError": "Error al eliminar el accesorio:"
+    "removeAccessoryError": "Error al eliminar el accesorio:",
+    "pairAccessory": "Emparejar Accesorio",
+    "pairing": "Emparejando..."
   }
 }

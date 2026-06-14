@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { X, Plus } from 'lucide-react'
+import { X } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Accessory } from '../../types/device'
 import { useDeviceStore } from '../../state/device-store'
 import { ScanView } from './ScanView'
@@ -12,6 +13,7 @@ interface PairModalProps {
 }
 
 export const PairModal: React.FC<PairModalProps> = ({ isOpen, onClose }) => {
+  const { t } = useTranslation()
   const [mode, setMode] = useState<'scan' | 'manual'>('scan')
   const [pairingCode, setPairingCode] = useState('')
   const [pairedAccessory, setPairedAccessory] = useState<Accessory | null>(null)
@@ -86,8 +88,7 @@ export const PairModal: React.FC<PairModalProps> = ({ isOpen, onClose }) => {
                   onClick={handlePair}
                   disabled={!normalizeSetupCode(pairingCode) || pairing}
                 >
-                  <Plus size={16} />
-                  {pairing ? 'Pairing...' : 'Pair'}
+                  {pairing ? t('common.pairing') : t('common.pairAccessory')}
                 </button>
               </div>
             </>
