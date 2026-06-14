@@ -15,7 +15,9 @@
     "addScene": "Add Scene",
     "sceneNamePlaceholder": "Scene name",
     "cancel": "Cancel",
-    "create": "Create"
+    "create": "Create",
+    "createRoom": "Create Room",
+    "createScene": "Create Scene"
   },
   "sidebar": {
     "home": "My Home",

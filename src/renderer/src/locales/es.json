@@ -15,7 +15,9 @@
     "addScene": "Agregar Ambiente",
     "sceneNamePlaceholder": "Nombre del ambiente",
     "cancel": "Cancelar",
-    "create": "Crear"
+    "create": "Crear",
+    "createRoom": "Crear Habitación",
+    "createScene": "Crear Ambiente"
   },
   "sidebar": {
     "home": "Mi Casa",

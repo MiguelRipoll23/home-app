@@ -16,11 +16,12 @@ interface HeaderProps {
 interface ModalProps {
   title: string
   placeholder: string
+  confirmLabel: string
   onConfirm: (name: string) => void
   onCancel: () => void
 }
 
-const NameModal: React.FC<ModalProps> = ({ title, placeholder, onConfirm, onCancel }) => {
+const NameModal: React.FC<ModalProps> = ({ title, placeholder, confirmLabel, onConfirm, onCancel }) => {
   const { t } = useTranslation()
   const [name, setName] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
@@ -52,9 +53,9 @@ const NameModal: React.FC<ModalProps> = ({ title, placeholder, onConfirm, onCanc
           />
         </div>
          <div className="modal-footer">
-           <button className="modal-btn-secondary" onClick={onCancel}>{t('modal.cancel')}</button>
-           <button className="modal-btn-primary" onClick={handleConfirm} disabled={!name.trim()}>{t('modal.create')}</button>
-         </div>
+          <button className="modal-btn-secondary" onClick={onCancel}>{t('modal.cancel')}</button>
+          <button className="modal-btn-primary" onClick={handleConfirm} disabled={!name.trim()}>{confirmLabel}</button>
+        </div>
       </div>
     </div>,
     document.body
@@ -155,22 +156,24 @@ export const Header: React.FC<HeaderProps> = ({ title, showActions = true, roomI
                </MenuPortal>
              )}
 
-             {showRoomModal && (
-               <NameModal
-                 title={t('modal.addRoom')}
-                 placeholder={t('modal.roomNamePlaceholder')}
-                 onConfirm={handleAddRoom}
-                 onCancel={() => setShowRoomModal(false)}
-               />
-             )}
-             {showSceneModal && (
-               <NameModal
-                 title={t('modal.addScene')}
-                 placeholder={t('modal.sceneNamePlaceholder')}
-                 onConfirm={handleAddScene}
-                 onCancel={() => setShowSceneModal(false)}
-               />
-             )}
+              {showRoomModal && (
+                <NameModal
+                  title={t('modal.addRoom')}
+                  placeholder={t('modal.roomNamePlaceholder')}
+                  confirmLabel={t('modal.createRoom')}
+                  onConfirm={handleAddRoom}
+                  onCancel={() => setShowRoomModal(false)}
+                />
+              )}
+              {showSceneModal && (
+                <NameModal
+                  title={t('modal.addScene')}
+                  placeholder={t('modal.sceneNamePlaceholder')}
+                  confirmLabel={t('modal.createScene')}
+                  onConfirm={handleAddScene}
+                  onCancel={() => setShowSceneModal(false)}
+                />
+              )}
           </div>
         </div>
       )}
