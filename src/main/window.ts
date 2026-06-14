@@ -1,6 +1,9 @@
+import { fileURLToPath } from 'url'
+import { dirname, join } from 'path'
 import { BrowserWindow, shell } from 'electron'
-import { join } from 'path'
 import { is } from '@electron-toolkit/utils'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export function createWindow(): BrowserWindow {
   const mainWindow = new BrowserWindow({
@@ -25,7 +28,6 @@ export function createWindow(): BrowserWindow {
     mainWindow.show()
   })
 
-  // Open devtools with F12
   mainWindow.webContents.on('before-input-event', (event, input) => {
     if (input.key === 'F12') {
       mainWindow.webContents.toggleDevTools()
