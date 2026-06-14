@@ -25,7 +25,7 @@ export const BaseAccessoryEditView: React.FC<BaseAccessoryEditViewProps> = ({
   onSave,
 }) => {
   const { t } = useTranslation()
-  const { setDeviceName, setDeviceRoom, setShowOnHome, removeDevice } = useDeviceStore()
+  const { setDeviceName, setDeviceRoom, setShowOnHome, removeDevice, fetchDevices } = useDeviceStore()
   const { rooms } = useRoomStore()
   const [name, setName] = useState(accessory.friendlyName)
   const [roomId, setRoomId] = useState(accessory.roomId)
