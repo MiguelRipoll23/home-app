@@ -11,7 +11,7 @@
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
     "test": "vitest run",
-    "electron:build": "electron-vite build && electron-builder"
+    "electron:build": "electron-vite build && electron-builder --publish never"
   },
   "build": {
     "appId": "com.matter.controller",
