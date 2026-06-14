@@ -1,6 +1,6 @@
 {
   "name": "matter-controller",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-beta.1",
   "private": true,
   "type": "module",
   "main": "./out/main/index.js",
