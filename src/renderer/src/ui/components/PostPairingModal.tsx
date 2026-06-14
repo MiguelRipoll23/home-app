@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { X } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Accessory } from '../../types/device'
 import { useDeviceStore } from '../../state/device-store'
 import { useRoomStore } from '../../state/room-store'
@@ -13,6 +14,7 @@ interface PostPairingModalProps {
 }
 
 export const PostPairingModal: React.FC<PostPairingModalProps> = ({ accessory, onClose }) => {
+  const { t } = useTranslation()
   const { setDeviceName, setDeviceRoom, fetchDevices } = useDeviceStore()
   const { rooms } = useRoomStore()
   const defaultRoomId = rooms.length > 0 ? rooms[0].id : ''
@@ -81,14 +83,14 @@ export const PostPairingModal: React.FC<PostPairingModalProps> = ({ accessory, o
               className="edit-identity-name"
               value={name}
               onChange={e => setName(e.target.value)}
-              placeholder="e.g. Living Room Light"
+              placeholder={t('postPairing.namePlaceholder')}
               autoFocus
             />
           </div>
 
           <div className="edit-toggle-list" style={{ width: '100%' }}>
             <button className="edit-toggle-row" onClick={() => setShowRoomPicker(!showRoomPicker)}>
-              <span className="edit-toggle-label">Room</span>
+              <span className="edit-toggle-label">{t('postPairing.room')}</span>
               <span className="edit-toggle-value">{currentRoom?.name ?? ''}</span>
             </button>
             {showRoomPicker && (
@@ -108,14 +110,14 @@ export const PostPairingModal: React.FC<PostPairingModalProps> = ({ accessory, o
 
           <div className="post-pairing-actions">
             <button className="modal-btn-amber wide" onClick={handleDone}>
-              Continue
+              {t('postPairing.continue')}
             </button>
             <button
               className={`modal-btn-amber wide secondary ${identifying ? 'is-identifying' : ''}`}
               onClick={handleIdentify}
               disabled={identifying}
             >
-              {identifying ? 'Identifying...' : 'Identify'}
+              {identifying ? t('postPairing.identifying') : t('postPairing.identify')}
             </button>
           </div>
         </div>

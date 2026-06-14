@@ -116,5 +116,12 @@
     "removeAccessoryError": "Failed to remove accessory:",
     "pairAccessory": "Pair Accessory",
     "pairing": "Pairing..."
+  },
+  "postPairing": {
+    "namePlaceholder": "e.g. Living Room Light",
+    "room": "Room",
+    "continue": "Continue",
+    "identify": "Identify",
+    "identifying": "Identifying..."
   }
 }

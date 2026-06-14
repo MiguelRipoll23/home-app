@@ -116,5 +116,12 @@
     "removeAccessoryError": "Error al eliminar el accesorio:",
     "pairAccessory": "Emparejar Accesorio",
     "pairing": "Emparejando..."
+  },
+  "postPairing": {
+    "namePlaceholder": "ej. Luz de la Sala",
+    "room": "Habitación",
+    "continue": "Continuar",
+    "identify": "Identificar",
+    "identifying": "Identificando..."
   }
 }
