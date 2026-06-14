@@ -71,6 +71,7 @@ export const BaseAccessoryCard: React.FC<BaseAccessoryCardProps> = ({
 
   const handleResizeClick = useCallback((e: React.MouseEvent) => {
     e.stopPropagation()
+    e.preventDefault()
     setCardSize(vm.id, cardSize === 'large' ? 'small' : 'large')
   }, [vm.id, cardSize, setCardSize])
 
@@ -86,7 +87,13 @@ export const BaseAccessoryCard: React.FC<BaseAccessoryCardProps> = ({
       tabIndex={0}
     >
       {editModeType === 'accessories' && (
-        <button className="card-resize-btn" onClick={handleResizeClick} title={cardSize === 'large' ? 'Make small' : 'Make large'}>
+        <button
+          className="card-resize-btn"
+          onClick={handleResizeClick}
+          onMouseDown={e => e.stopPropagation()}
+          onTouchStart={e => e.stopPropagation()}
+          title={cardSize === 'large' ? 'Make small' : 'Make large'}
+        >
           {cardSize === 'large' ? <Minimize2 size={13} /> : <Maximize2 size={13} />}
         </button>
       )}
