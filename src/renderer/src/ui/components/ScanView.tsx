@@ -1,9 +1,14 @@
 import React, { useEffect, useRef } from 'react'
 import { Radar, Wifi } from 'lucide-react'
+import { Accessory } from '../../types/device'
 import { useDeviceStore } from '../../state/device-store'
 import { DiscoveredDevice } from '../../types/device'
 
-export const ScanView: React.FC = () => {
+interface ScanViewProps {
+  onPairSuccess?: (accessory: Accessory) => void
+}
+
+export const ScanView: React.FC<ScanViewProps> = ({ onPairSuccess }) => {
   const { discoveredDevices, scanForDevices, pairDiscovered, pairing } = useDeviceStore()
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
@@ -18,7 +23,10 @@ export const ScanView: React.FC = () => {
   }, [scanForDevices])
 
   const handlePairDevice = async (device: DiscoveredDevice) => {
-    await pairDiscovered({ shortDiscriminator: device.discriminator }, 20202021)
+    const accessory = await pairDiscovered({ shortDiscriminator: device.discriminator }, 20202021)
+    if (accessory && onPairSuccess) {
+      onPairSuccess(accessory)
+    }
   }
 
   return (

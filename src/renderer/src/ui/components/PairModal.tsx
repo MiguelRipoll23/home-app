@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { X, Plus } from 'lucide-react'
+import { Accessory } from '../../types/device'
 import { useDeviceStore } from '../../state/device-store'
 import { ScanView } from './ScanView'
+import { PostPairingModal } from './PostPairingModal'
 import { formatSetupCodeInput, normalizeSetupCode } from '../../../../shared/pairing-code'
 
 interface PairModalProps {
@@ -12,6 +14,7 @@ interface PairModalProps {
 export const PairModal: React.FC<PairModalProps> = ({ isOpen, onClose }) => {
   const [mode, setMode] = useState<'scan' | 'manual'>('scan')
   const [pairingCode, setPairingCode] = useState('')
+  const [pairedAccessory, setPairedAccessory] = useState<Accessory | null>(null)
   const { pairDevice, pairing } = useDeviceStore()
 
   if (!isOpen) return null
@@ -19,9 +22,22 @@ export const PairModal: React.FC<PairModalProps> = ({ isOpen, onClose }) => {
   const handlePair = async () => {
     const normalizedCode = normalizeSetupCode(pairingCode)
     if (!normalizedCode) return
-    await pairDevice(normalizedCode)
+    const accessory = await pairDevice(normalizedCode)
+    if (accessory) {
+      setPairedAccessory(accessory)
+    } else {
+      onClose()
+    }
+  }
+
+  const handleClose = () => {
+    setPairedAccessory(null)
     setPairingCode('')
     onClose()
+  }
+
+  if (pairedAccessory) {
+    return <PostPairingModal accessory={pairedAccessory} onClose={handleClose} />
   }
 
   return (
@@ -36,7 +52,7 @@ export const PairModal: React.FC<PairModalProps> = ({ isOpen, onClose }) => {
         <div className="modal-body modal-body-compact">
           {mode === 'scan' ? (
             <>
-              <ScanView />
+              <ScanView onPairSuccess={(a) => setPairedAccessory(a)} />
               <div style={{ textAlign: 'center', marginTop: 12 }}>
                 <button
                   className="modal-btn-amber modal-btn-amber-wide"
