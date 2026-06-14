@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react'
-import { Radar, Wifi, Search } from 'lucide-react'
+import { Radar, Wifi } from 'lucide-react'
 import { useDeviceStore } from '../../state/device-store'
 import { DiscoveredDevice } from '../../types/device'
 
 export const ScanView: React.FC = () => {
-  const { discoveredDevices, scanning, scanForDevices, pairDiscovered, pairing } = useDeviceStore()
+  const { discoveredDevices, scanForDevices, pairDiscovered, pairing } = useDeviceStore()
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   useEffect(() => {
@@ -29,11 +29,6 @@ export const ScanView: React.FC = () => {
           <p style={{ fontSize: 15, fontWeight: 500, color: 'var(--text-secondary)' }}>
             No unpaired accessories nearby
           </p>
-          {scanning && (
-            <div style={{ marginTop: 12 }}>
-              <Search size={16} style={{ color: 'var(--accent)', animation: 'scanPulse 1s ease-in-out infinite' }} />
-            </div>
-          )}
         </div>
       )}
 
@@ -73,11 +68,6 @@ export const ScanView: React.FC = () => {
               </div>
             </button>
           ))}
-          {scanning && (
-            <div style={{ textAlign: 'center', padding: '16px' }}>
-              <Search size={16} style={{ color: 'var(--accent)', animation: 'scanPulse 1s ease-in-out infinite' }} />
-            </div>
-          )}
         </div>
       )}
     </div>
